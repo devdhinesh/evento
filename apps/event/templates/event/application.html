@@ -1,0 +1,79 @@
+{% extends 'event/base.html' %}
+
+{% block title %} <title> {{event.name}} </title> {% endblock %}
+
+{% block content %}
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="container p-3 rounded bg-red-700 text-white">
+    {{message}}
+</div>
+
+{% endfor %}
+{% endif %}
+
+<div>
+<div id="hero" class="w-screen flex flex-wrap justify-center gap-3 " >
+    <div class="flex justify-center items-center">
+
+        <img src="{{event.image_url}}"  class="sm:h-4/5 lg:h-3/5" alt="" srcset="">
+    
+    </div>
+    
+<div class="flex flex-col justify-center items-center align-center " >
+    <div class="flex justify-center items-center mt-5">
+        <h1 class="md:title m-0 font-bold text-2xl align-start"> Volunteer Application  for {{event.name}} </h1>       
+    
+    </div>
+    <hr class="my-3 ">
+    <form method="POST" class="flex flex-col gap-2">
+        {% csrf_token %}
+       
+       
+        {{form.name}} 
+        {{form.email}} 
+        {{form.notes}} 
+        {{form.event}}
+
+     
+
+        <button type="submit" class=" my-3 transition duration-400 ease-in-out px-4 py-2 bg-green-700 text-white rounded transform hover:scale-110"> Submit </button>
+    </form>
+   
+
+</div>
+
+
+</div>
+    
+
+</div>
+<script>
+
+    const name = document.getElementById("id_name");
+    name.setAttribute('class','appearance-none rounded-none relative block w-full mr-5 px-5 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm');
+    name.setAttribute('placeholder','Name');
+    const email = document.getElementById("id_email");
+    email.setAttribute('class','appearance-none rounded-none relative block w-full mr-5 px-5 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm');
+    email.setAttribute('placeholder','Email');
+    const notes = document.getElementById("id_notes");
+    notes.setAttribute('class','appearance-none rounded-none relative block w-full mr-5 px-5 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm');
+    notes.setAttribute('placeholder','Notes');
+    const event = document.getElementById("id_event");
+    event.setAttribute('class','form-select  border border-slate rounded');
+    event.setAttribute('placeholder','Notes');
+    
+   
+    //const event = document.getElementById("id_event");
+   // event.setAttribute('class','border border-slate-800 px-4 py-2');
+    
+
+    
+</script>
+
+
+
+{% endblock %}

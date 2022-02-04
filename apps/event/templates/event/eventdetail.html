@@ -1,0 +1,44 @@
+{% extends 'event/base.html' %}
+
+{% block title %} <title> Application </title> {% endblock %}
+
+{% block content %}
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="container p-3 rounded bg-red-700 text-white">
+    {{message}}
+</div>
+
+{% endfor %}
+{% endif %}
+
+<div>
+<div id="hero" class="w-screen flex flex-wrap justify-evenly " >
+<div class="flex flex-col justify-center items-left align-start " >
+
+    <form method="POST" class="flex flex-col gap-2">
+        {% csrf_token %}
+        <input type="text" name="name" required placeholder="Event Name" class="form-input border-blue-600 px-4 py-3 bg-gray-300 focus:ring rounded">
+        <input type="text" name="description" required placeholder="Event Description" class="form-input border-blue-600 px-4 py-3 bg-gray-300 focus:ring rounded">
+        <input type="text" name="image_url" required placeholder="Image URL" class="form-input border-blue-600 px-4 py-3 bg-gray-300 focus:ring rounded">
+       
+        <button type="submit" class=" my-3 transition duration-400 ease-in-out px-4 py-2 bg-green-700 text-white rounded transform hover:scale-110"> Submit </button>
+    </form>
+   
+
+</div>
+
+
+
+</div>
+    
+
+</div>
+
+
+
+
+{% endblock %}

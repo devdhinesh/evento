@@ -1,0 +1,82 @@
+{% extends 'event/base.html' %}
+
+{% block title %} <title> Dashboard </title> {% endblock %}
+
+{% block content %}
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="w-full p-3 rounded bg-green-700 text-white">
+    {{message}}
+</div>
+
+{% endfor %}
+{% endif %}
+
+<div class="">
+
+    <div class="h-screen  flex w-full ">
+        <div class="hidden lg:w-1/6 lg:bg-black lg:flex lg:flex-col lg:gap-3 lg:py-4 lg:px-7 lg:align-center ">
+    
+            <a href="{% url 'dashboard' %}" class="text-left hover:white"> Dashboard </a>
+           
+            <a href="{% url 'logout' %}" class="text-left hover:white"> Logout </a>
+    
+        </div>
+       
+        <div id="dashboard" class="w-full px-10 pt-3">
+            <div class="flex justify-between items-center mt-5">
+                <h1 class="md:title m-0 font-bold text-2xl"> Dashboard </h1>
+               
+                  <a href="{% url 'createevent' %}" class=" h-2/3 px-4 py-2 my-1 flex  bg-blue-900 text-white items-center hover:text-white rounded"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                  </svg>  </a>
+            </div>
+            <hr class="my-3 ">
+            {% if events %}
+            <div class="flex flex-wrap gap-4 mt-2 justify-start">
+                {% for event in events %}
+                <div class=" w-3/7 p-4 rounded shadow-lg">
+                    <div class="w-full ">
+                        <img src="{{event.image_url}}" class="h-40 w-full rounded" alt="" srcset="">
+                    </div>
+                    <div class="flex justify-between mt-3">
+                       
+                     <h1 class="text-xl font-bold my-1"> {{event.name}} </h1>
+                     <a href="{% url 'editevent' event.unique_id  %}"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                       </svg></a>
+                    </div>
+                     <h2 class="text-md"> {{event.description}} </h2>
+                    
+                     <h2 class="paragraph text-green-600 font-bold my-2 text-sm"> {{event.volunteer.count}} Submissions </h2>
+                        <div class="flex items-center">
+
+                            <h2>Event Link: </h2> <input type="text" class="px-4 py-2 border  focus:ring outline-none border-blue rounded m-2" value="http://{{request.get_host}}{% url 'application' event.unique_id  %}">
+
+                        </div>
+
+                     <hr class="my-2">
+                    <div class="flex">
+                     
+                     <a href="{% url 'assignments' event.unique_id  %}" class="px-5 py-1 bg-blue-700 text-sm font-bold rounded text-white hover:text-white m-1"> View Details </a>
+                     <a href="{% url 'deleteevent' event.unique_id  %}" class="px-5 py-1 bg-red-700 text-sm font-bold rounded text-white hover:text-white m-1"> Remove Event </a>
+                    </div>
+                 </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <center> No Events Created  </center>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

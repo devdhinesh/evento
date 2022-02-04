@@ -1,0 +1,49 @@
+{% extends 'event/base.html' %}
+
+{% block title %} <title> Login </title> {% endblock %}
+
+{% block content %}
+
+
+<div>
+<div id="hero" class="w-screen h-screen flex flex-wrap justify-evenly bg-white " >
+<div class="flex flex-col items-center justify-center md:items-center md:align-center" >
+
+    <form method="POST" class="shadow px-10 py-5 md:px-20 md:py-5 rounded w-full">
+        <h1 class="text-2xl m-3 md:text-3xl  font-bold text-center uppercase">Login</h1>
+        <hr class="w-1/2 mx-auto my-5"> 
+        {% csrf_token %}
+       
+        {{form.username}}
+        {{form.password}}
+        <button type="submit" class="my-1 mx-auto px-4 py-2 bg-blue-700 text-white rounded"> Login </button>
+        <p class="my-2 text-sm"> Don't Have Account? <a href="{% url 'signup' %}" class="underlined">Signup Here</a> </p>
+    </form>
+  
+
+</div>
+<div class="hidden  lg:flex lg:justify-center lg:items-center">
+
+    <img src="https://i.imgur.com/cnmXMWV.png"  alt="" srcset="">
+
+</div>
+
+
+</div>
+    
+
+</div>
+
+
+<script>
+
+    const user = document.getElementById("id_username");
+    user.setAttribute('class','appearance-none rounded-none relative block w-full mr-5 px-5 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm');
+    user.setAttribute('placeholder','Username');
+    const pass = document.getElementById("id_password");
+    pass.setAttribute('class','appearance-none rounded-none relative block w-full mr-5 px-5 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm');
+    pass.setAttribute('placeholder','Password');
+</script>
+
+{% endblock %}
+

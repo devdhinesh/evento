@@ -1,0 +1,62 @@
+{% extends 'event/base.html' %}
+
+{% block title %} <title> Application </title> {% endblock %}
+
+{% block content %}
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="container p-3 rounded bg-red-700 text-white">
+    {{message}}
+</div>
+
+{% endfor %}
+{% endif %}
+
+<div class="">
+
+    <div class="h-screen  flex w-full ">
+        <div class="hidden lg:w-1/6 lg:bg-black lg:flex lg:flex-col lg:gap-3 lg:py-4 lg:px-7 lg:align-center ">
+            <a href="{% url 'dashboard' %}" class="text-left hover:white"> Dashboard </a>
+           
+            <a href="{% url 'logout' %}" class="text-left hover:white"> Logout </a>
+    
+        </div>
+
+
+<div class="flex flex-col w-full justify-start items-center align-start " >
+    <div class="flex justify-between items-start mt-5">
+        <h1 class="md:title m-0 font-bold text-2xl align-start"> Create Event </h1>
+       
+    
+    </div>
+    <hr class="my-3 ">
+
+   <div class="w-full sm:w-1/2">
+    <form method="POST" class="flex flex-col gap-2 p-10 shadow">
+        {% csrf_token %}
+        <input type="text" name="name" required placeholder="Event Name" class="form-input border-blue-600 px-4 py-3 bg-gray-300 focus:ring rounded">
+        <input type="text" name="description" required placeholder="Event Description" class="form-input  border-blue-600 px-4 py-3 bg-gray-300 focus:ring rounded">
+        <input type="text" name="image_url" required placeholder="Image URL" class="form-input  border-blue-600 px-4 py-3 bg-gray-300 focus:ring rounded">
+       
+        <button type="submit" class=" my-3 transition duration-400 ease-in-out px-4 py-2 bg-blue-700 text-white rounded transform hover:scale-100"> Submit </button>
+    </form>
+
+   </div>
+   
+
+</div>
+
+
+
+</div>
+    
+
+</div>
+
+
+
+
+{% endblock %}
