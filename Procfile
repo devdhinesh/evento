@@ -1,1 +1,1 @@
-web: gunicorn evento.wsgi --log-file -
+web: gunicorn evento.wsgi --timeout 15 --keep-alive 5 --log-level debug
