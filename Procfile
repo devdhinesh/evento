@@ -1,1 +1,1 @@
-web: gunicorn evento.wsgi --timeout 90 --log-file 
+web: gunicorn evento.wsgi --log-file 
