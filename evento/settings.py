@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from django.db.backends.mysql.base import DatabaseWrapper
+DatabaseWrapper.data_types['DateTimeField']='datetime'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,19 +87,33 @@ WSGI_APPLICATION = 'evento.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+#import pymysql
+#pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-	'NAME':'evento',
-	'ENFORCE_SCHEMA':False,
-        'CLIENT': {
-	   "host":"mongodb+srv://evento:Evento@cluster0.vnrk7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-	  
-	   
-	
-	},
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sql6473174',
+        #'ENGINE': 'mysql.connector.django',
+        'USER':'sql6473174',
+        'PASSWORD':'3lZ7tJeIVH',
+        'HOST':'sql6.freemysqlhosting.net',
+        'PORT':'3306',
+        'OPTIONS': {
+          'autocommit': True,
+        },
     }
 }
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'djongo',
+#	 'NAME':'evento',
+#	'ENFORCE_SCHEMA':False,
+#        'CLIENT': {
+#	   "host":"mongodb+srv://evento:Evento@cluster0.vnrk7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+#	  },
+#   }
+#}
 
 
 # Password validation
